@@ -1,0 +1,34 @@
+from "../../lib/olympiad.asy" access *;
+
+unitsize(35);
+pair A, B, C, D, I, Ib, Id, Oa, Oc, X;
+Ib = (0, 1); Id = (0, -2); A = (4, 0); C = (-2.5, 0);
+B = extension(A, reflect(A, Ib) * C, C, reflect(C, Ib) * A);
+D = extension(A, reflect(A, Id) * C, C, reflect(C, Id) * A);
+Oa = circumcenter(A, Ib, Id);
+Oc = circumcenter(C, Ib, Id);
+I = extension(A, Oa, C, Oc);
+X = extension(Oa, Oc, I, bisectorpoint(B, I, D));
+draw(A--I^^C--I, gray);
+draw(A--Ib--C--Id--cycle, gray);
+draw(Ib--Id, purple);
+draw(Oa--X, lightred + dashed);
+draw(B--I--D, dashed + gray);
+draw(X--tangent(X, Oa, abs(A-Oa), 1), dotted);
+draw(X--tangent(X, Oa, abs(A-Oa), 2), dotted);
+draw(I--X, heavycyan);
+draw(circumcircle(A, Ib, Id)^^circumcircle(C, Ib, Id), lightblue);
+draw(circle(Ib, abs(Ib.y))^^circle(Id, abs(Id.y)), green);
+draw(A--B--C--D--cycle, red);
+draw(A--C, red);
+
+dot("$A$", A, dir(A));
+dot("$B$", B, dir(B));
+dot("$C$", C, dir(C));
+dot("$D$", D, dir(D));
+dot("$I$", I, dir(I));
+dot("$I_B$", Ib, dir(Ib));
+dot("$I_D$", Id, dir(Id));
+dot("$O_A$", Oa, dir(Oa));
+dot("$O_C$", Oc, dir(Oc));
+dot("$X$", X, dir(X));
